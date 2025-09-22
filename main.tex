@@ -1,0 +1,291 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Jitin Nair
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT DEFINITION
+%----------------------------------------------------------------------------------------
+
+% article class because we want to fully customize the page and not use a cv template
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+% % fontspec allows you to use TTF/OTF fonts directly
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
+% % modified for ShareLaTeX use
+% \setmainfont[
+% SmallCapsFont = Fontin-SmallCaps.otf,
+% BoldFont = Fontin-Bold.otf,
+% ItalicFont = Fontin-Italic.otf
+% ]
+% {Fontin.otf}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=chem-acs,sorting=ydnt]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+
+\setlength{\multicolsep}{1.0pt}% 50% of original values
+
+
+% job listing environments
+\newenvironment{joblocation}[2]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textit{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    }
+    {
+    }
+
+\newenvironment{jobtitle}[2]
+    {
+    \vspace{4pt}
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep, after=\strut, leftmargin=1em, itemsep=3pt, label=--]
+    }
+    {
+    \end{itemize}
+    \vspace{8pt}
+    \end{minipage}
+    }
+
+\newenvironment{projecttitle}[1]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill \\[3.75pt]
+    \end{tabularx}
+    }
+    {
+    }
+
+\newenvironment{projectdescription}[1]
+    {
+    \vspace{4pt}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep, after=\strut, leftmargin=1em, itemsep=3pt]
+    }
+    {
+    \end{itemize}
+    \vspace{-8pt}
+    \end{minipage}
+    }
+
+
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+% \begin{tabularx}{\linewidth}{ @{}X X@{} }
+% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
+% \raisebox{-0.05\height}\faGithub\ username \ | \
+% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
+% \end{tabularx}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+\Huge{\textbf{Ryne C. Johnston}} \\[7.5pt]
+\href{https://github.com/rynecjohnston}{\raisebox{-0.05\height}\faGithub\ rynecjohnston} \ $|$ \ 
+\href{https://linkedin.com/in/rynecjohnston}{\raisebox{-0.05\height}\faLinkedin\ rynecjohnston} \ $|$ \ 
+\href{mailto:ryne.c.johnston@gmail.com}{\raisebox{-0.05\height}\faEnvelope \ ryne.c.johnston@gmail.com} \ $|$ \ 
+\href{tel:+18704032201}{\raisebox{-0.05\height}\faMobile \ +1 (870) 403-2201} \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+% EXPERIENCE SECTIONS
+%----------------------------------------------------------------------------------------
+
+%Experience
+\section{Professional Experience}
+
+\begin{joblocation}{Schr\"odinger, Inc.}{Portland, OR}
+\end{joblocation}
+\begin{jobtitle}{Principal Scientist II/Product Manager}{Jun 2023 -- Present}
+    \item Managed multiple products and directed teams to meet project goals and deadlines.
+    \vspace{2pt}
+    \begin{itemize}
+        \item \textit{Epik}: p\textit{K}\textsubscript{a} and protonation state predictor
+        \item \textit{E-sol}: Central nervous system permeability predictor
+    \end{itemize}
+    \item Interacted with customers and provided software solutions to meet their needs.
+    \item Interacted with marketing and sales teams to develop and execute product launch plans.
+\end{jobtitle}
+\begin{jobtitle}{Principal Scientist I/Technical Lead}{Jun 2021 -- Jun 2023}
+    \item Developed and maintained best-in-class Python software to predict chemical properties through machine learning.
+    \item Contributed to the development of a Python workflow for the rational design of homogenous catalysts to unlock previously unattainable reactivity.
+    \item Wrote scholarly articles and technical documents for public consumption.
+    \item Wrote and maintained documentation and automated tests.
+    \item Performed code reviews.
+\end{jobtitle}
+\begin{jobtitle}{Senior Scientist}{May 2017 -- Jun 2021}
+    \item Developed software to enumerate and canonicalize different related chemical compounds.
+    \item Maintained legacy chemistry C/C++ software.
+\end{jobtitle}
+\begin{joblocation}{Oak Ridge National Laboratory}{Oak Ridge, TN}
+\end{joblocation}
+\begin{jobtitle}{Postdoctoral Scholar}{Jun 2015 -- Feb 2017}
+    \item Used quantum chemistry software to investigate environmentally relevant biogeochemical processes.
+    \item Probed the mechanisms of how inorganic mercury is microbially assimilated into a bioaccumulative organic form and its later environmentally-mediated deposition back into its inorganic form.
+    \item Developed methods for computing p\textit{K}\textsubscript{a} values of environmentally relevant functional groups and aqueous formation constants of metal complexes.
+    \item Wrote scholarly articles and research project proposals.
+    \item Awarded nearly \$1M in research grant funds.
+\end{jobtitle}
+  
+%Projects
+\section{Projects}
+
+\begin{projecttitle}{Epik}
+\end{projecttitle}
+\begin{projectdescription}
+\item I designed, developed, and now manage \href{https://www.schrodinger.com/platform/products/epik/}{\textit{Epik}}, a Python software program for predicting aqueous the p\textit{K}\textsubscript{a} values and distribution of protonation states of small molecules. It leverages a machine learning model trained on 77k p\textit{K}\textsubscript{a} values for accurate predictions across broad chemical space.  \\
+\end{projectdescription}
+\begin{projecttitle}{E-sol}
+\end{projecttitle}
+\begin{projectdescription}
+\item I am the product manager of \href{https://pubs.acs.org/doi/abs/10.1021/acs.jcim.3c00150}{\textit{E-sol}}, a workflow using physics-based methods for calculating partition coefficients of small molecules with the aim of predicting their central nervous system permeability.  \\
+\end{projectdescription}
+\begin{projecttitle}{PetroSim}
+\end{projecttitle}
+\begin{projectdescription}
+\item As a passion side project, I created the open-source \href{https://github.com/rynecjohnston/petrosim}{\textit{PetroSim}} Python package as a collection of the Python ports of the originally Visual Basic EC-(R)AFC petrological models for simulating the evolution of the geochemical composition of a magma body over time.  \\
+\end{projectdescription}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Education}
+
+\begin{tabularx}{\textwidth} {{\raggedright}X {\raggedright}X {\raggedleft}X}   
+    2015 & \textbf{Doctor of Philosophy}, Computational Chemistry & \textit{Oregon State University} \\
+    2010 & \textbf{Bachelor of Science}, Chemistry & \textit{Henderson State University} \\
+\end{tabularx}
+\vspace{6pt}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS
+%----------------------------------------------------------------------------------------
+\section{Publications}
+\begin{refsection}[works.bib]
+\nocite{*}
+\printbibliography[heading=none]
+\end{refsection}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{Skills}
+\begin{multicols}{3}
+    \begin{itemize}
+        \item Python
+        \item NumPy
+        \item scikit-learn
+        \item pandas
+        \item PyTorch
+        \item RDKit
+        \item version control (git/GitHub)
+        \item C++
+        \item Fortran
+        \item agile methodology
+        \item productivity tools
+        \item performance profilers
+        \item computational chemistry packages
+        \begin{itemize}
+            \item Schr\"odinger
+            \item ORCA
+        \end{itemize}
+    \end{itemize}
+\end{multicols}
+
+\section{Interests}
+\begin{tabular} { r l }
+\begin{itemize}[nosep, after=\strut, leftmargin=1em, itemsep=3pt]
+chemistry, geology, history, programming, hiking
+\end{tabular}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}
