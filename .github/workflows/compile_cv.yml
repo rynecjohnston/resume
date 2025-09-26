@@ -82,6 +82,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download PDF artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-pdf
+
       - name: Copy generated PDF to deployment directory
         run: |
           mkdir -p out
