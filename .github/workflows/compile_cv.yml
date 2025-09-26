@@ -16,17 +16,22 @@ jobs:
         uses: dante-ev/latex-action@master
         with:
           root_file: cv.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
 
       - name: bibtex main
-        uses: dante-ev/latex-action@latest
+        uses: dante-ev/latex-action@master
         with:
-          root_file: cv
+          root_file: cv.aux
           compiler: bibtex
+          args:
 
       - name: pdflatex main
         uses: dante-ev/latex-action@master
         with:
           root_file: cv.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
 
       - name: Check for PDF
         run: |
