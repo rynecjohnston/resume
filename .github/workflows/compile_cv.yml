@@ -85,6 +85,7 @@ jobs:
       - name: Copy generated PDF to deployment directory
         run: |
           mkdir -p out
+          ls
           cp cv.pdf out/RyneCJohnston_cv.pdf
 
       - name: Create index.html
