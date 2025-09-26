@@ -34,6 +34,7 @@ jobs:
 
   create_release:
     needs: compile_latex
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Get current date
@@ -55,6 +56,7 @@ jobs:
 
   upload_asset:
     needs: [compile_latex, create_release]
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Download PDF artifact
@@ -74,6 +76,7 @@ jobs:
 
   deploy_to_github_pages:
     needs: compile_latex
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
