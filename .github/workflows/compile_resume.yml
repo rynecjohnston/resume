@@ -1,8 +1,9 @@
-name: Compile LaTeX resmue and Create Release
+name: Compile LaTeX resume and Create Release
 
 on:
   push:
-    branches: [ master ]  
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   compile_latex:
@@ -14,12 +15,12 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: resmue.tex
+          root_file: resume.tex
           latexmk_use_xelatex: true
 
       - name: Check for PDF
         run: |
-          if [ -f "resmue.pdf" ]; then
+          if [ -f "resume.pdf" ]; then
             echo "PDF file found"
           else
             echo "PDF file not found"
@@ -30,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
-          path: resmue.pdf
+          path: resume.pdf
 
   create_release:
     needs: compile_latex
@@ -68,8 +69,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: ./resmue.pdf
-          asset_name: RyneCJohnston_resmue.pdf
+          asset_path: ./resume.pdf
+          asset_name: RyneCJohnston_resume.pdf
           asset_content_type: application/pdf
 
   deploy_to_github_pages:
@@ -82,11 +83,11 @@ jobs:
       - name: Copy generated PDF to deployment directory
         run: |
           mkdir -p out
-          cp resmue.pdf out/RyneCJohnston_resmue.pdf
+          cp resume.pdf out/RyneCJohnston_resume.pdf
 
       - name: Create index.html
         run: |
-          echo '<html><body><a href="RyneCJohnston_resmue.pdf.pdf">View Resume</a></body></html>' > ./out/index.html
+          echo '<html><body><a href="RyneCJohnston_resume.pdf.pdf">View Resume</a></body></html>' > ./out/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
