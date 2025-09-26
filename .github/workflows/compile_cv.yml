@@ -17,6 +17,17 @@ jobs:
         with:
           root_file: cv.tex
 
+      - name: bibtex cv
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: cv.aux
+          compiler: bibtex
+
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: cv.tex
+
       - name: Check for PDF
         run: |
           if [ -f "cv.pdf" ]; then
