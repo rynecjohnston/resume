@@ -22,7 +22,8 @@ jobs:
       - name: bibtex main
         uses: dante-ev/latex-action@master
         with:
-          compiler: bibtex
+          root_file: cv.bcf
+          compiler: biber
           args:
 
       - name: pdflatex main
