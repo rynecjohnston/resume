@@ -1,4 +1,4 @@
-name: Compile LaTeX CV and Create Release
+name: Compile LaTeX CV & Resume and Create Release
 
 on:
   push:
@@ -33,6 +33,13 @@ jobs:
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
 
+      - name: pdflatex main
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: resume.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+
       - name: Check for PDF
         run: |
           if [ -f "cv.pdf" ]; then
@@ -41,12 +48,24 @@ jobs:
             echo "PDF file not found"
             exit 1
           fi
+          if [ -f "resume.pdf" ]; then
+            echo "PDF file found"
+          else
+            echo "PDF file not found"
+            exit 1
+          fi
 
-      - name: Upload PDF artifact
+      - name: Upload CV PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: cv.pdf
+
+      - name: Upload resume PDF artifact
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
-          path: cv.pdf
+          path: resume.pdf
 
   create_release:
     needs: compile_latex
@@ -55,7 +74,7 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%d/%m/%y-%s')"
+        run: echo "name=date::$(date +'%d/%m/%y-%s')" >> $GITHUB_OUTPUT
 
       - name: Create Release
         id: create_release
@@ -75,12 +94,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - name: Download PDF artifact
+      - name: Download PDF artifact - CV
         uses: actions/download-artifact@v4
         with:
-          name: resume-pdf
+          name: cv-pdf
 
-      - name: Upload Release Asset
+      - name: Upload Release Asset - CV
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -88,6 +107,21 @@ jobs:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: ./cv.pdf
           asset_name: RyneCJohnston_cv.pdf
+          asset_content_type: application/pdf
+
+      - name: Download PDF artifact - Resume
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-pdf
+
+      - name: Upload Release Asset - Resume
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: ./resume.pdf
+          asset_name: RyneCJohnston_resume.pdf
           asset_content_type: application/pdf
 
   deploy_to_github_pages:
@@ -98,20 +132,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download PDF artifact
+      - name: Download PDF artifact - CV
+        uses: actions/download-artifact@v4
+        with:
+          name: cv-pdf
+
+      - name: Copy generated PDF to deployment directory - CV
+        run: |
+          mkdir -p out
+          cp cv.pdf out/RyneCJohnston_cv.pdf
+
+      - name: Download PDF artifact - Resume
         uses: actions/download-artifact@v4
         with:
           name: resume-pdf
 
-      - name: Copy generated PDF to deployment directory
+      - name: Copy generated PDF to deployment directory - Resume
         run: |
-          mkdir -p out
-          ls
-          cp cv.pdf out/RyneCJohnston_cv.pdf
+          cp resume.pdf out/RyneCJohnston_resume.pdf
 
       - name: Create index.html
         run: |
-          echo '<html><body><a href="RyneCJohnston_cv.pdf.pdf">View Resume</a></body></html>' > ./out/index.html
+          echo '<html><body><a href="RyneCJohnston_cv.pdf.pdf">View CV</a></body></html>' > ./out/index.html
+          echo '<html><body><a href="RyneCJohnston_resume.pdf.pdf">View Resume</a></body></html>' > ./out/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
