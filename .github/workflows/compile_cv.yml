@@ -14,12 +14,12 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex  # Replace with your main .tex file name
+          root_file: cv.tex
           latexmk_use_xelatex: true
 
       - name: Check for PDF
         run: |
-          if [ -f "main.pdf" ]; then
+          if [ -f "cv.pdf" ]; then
             echo "PDF file found"
           else
             echo "PDF file not found"
@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
-          path: main.pdf
+          path: cv.pdf
 
   create_release:
     needs: compile_latex
@@ -68,7 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: ./main.pdf
+          asset_path: ./cv.pdf
           asset_name: RyneCJohnston_cv.pdf
           asset_content_type: application/pdf
 
@@ -82,7 +82,7 @@ jobs:
       - name: Copy generated PDF to deployment directory
         run: |
           mkdir -p out
-          cp main.pdf out/RyneCJohnston_cv.pdf
+          cp cv.pdf out/RyneCJohnston_cv.pdf
 
       - name: Create index.html
         run: |
