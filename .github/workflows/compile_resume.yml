@@ -2,7 +2,7 @@ name: Compile LaTeX resume and Create Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ]  
   workflow_dispatch:
 
 jobs:
@@ -34,8 +34,8 @@ jobs:
 
   create_release:
     needs: compile_latex
-    permissions: write-all
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Get current date
         id: date
@@ -56,8 +56,8 @@ jobs:
 
   upload_asset:
     needs: [compile_latex, create_release]
-    permissions: write-all
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Download PDF artifact
         uses: actions/download-artifact@v4
@@ -76,15 +76,21 @@ jobs:
 
   deploy_to_github_pages:
     needs: compile_latex
-    permissions: write-all
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download PDF artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-pdf
+
       - name: Copy generated PDF to deployment directory
         run: |
           mkdir -p out
+          ls
           cp resume.pdf out/RyneCJohnston_resume.pdf
 
       - name: Create index.html
