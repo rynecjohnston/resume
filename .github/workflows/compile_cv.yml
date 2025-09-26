@@ -12,18 +12,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
+      - name: pdflatex main
         uses: dante-ev/latex-action@master
         with:
           root_file: cv.tex
 
-      - name: bibtex cv
+      - name: bibtex main
         uses: dante-ev/latex-action@latest
         with:
-          root_file: cv.aux
+          root_file: cv
           compiler: bibtex
 
-      - name: Compile LaTeX document
+      - name: pdflatex main
         uses: dante-ev/latex-action@master
         with:
           root_file: cv.tex
