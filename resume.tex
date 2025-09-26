@@ -13,6 +13,7 @@
 \usepackage{xcolor}
 \usepackage{academicons}
 \usepackage{enumitem}
+\usepackage{multirow}
 
 
 \definecolor{slateblue}{RGB}{61,75,105}
@@ -21,6 +22,7 @@
 
 \hypersetup{colorlinks=true, urlcolor=black}
 
+\newcommand*{\vcenteredhbox}[1]{\begingroup\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
 
 \newcommand{\icon}[3]{% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text
 	\vcenteredhbox{\colorbox{skyblue}{\makebox(#2, #2){\textcolor{oceanblue}{\normalsize\csname fa#1\endcsname}}}}% Icon and box
@@ -44,7 +46,6 @@
   % measure the text width
   \sbox{\myboxbox}{\begin{varwidth}{\columnwidth}#1\end{varwidth}}%
   \begin{tcolorbox}[
-    breakable,
     width=\columnwidth,
     %top=0.2mm,
     %bottom=0.1mm,
@@ -71,7 +72,8 @@
 \end{center}
 \vspace*{-6pt}
 \section*{\color{oceanblue}\smallcapsalt{Professional Experience}}
-\noindent\hrulefill
+\vspace{-\baselineskip}
+\noindent\rule{\columnwidth}{1pt}
 
 \begin{tabularx} {\columnwidth}{@{} L R @{}}
     \\[-6pt]Schr\"odinger, Inc. & Portland, OR\\
@@ -116,17 +118,18 @@
 \columnbreak
 
 \begin{mybox}
-    \begin{itemize}
-        \icon{Phone}{6} +1 (870) 403-2201\\
-        \icon{Envelope}{6} {\href{mailto://rynecjohnston@gmail.com}{rynecjohnston@gmail.com}}\\
-        \icon{Github}{6} {\href{https://github.com/rynecjohnston}{rynecjohnston}}\\
-        \icon{MapMarker}{6} Beaverton, OR 97008
+    \begin{itemize}[nosep, after=\strut, leftmargin=0pt, itemsep=3pt, label={}]
+        \item \icon{Phone}{6}{+1 (870) 403-2201}
+        \item \icon{Envelope}{6}{\href{mailto://ryne.c.johnston@gmail.com}{rynecjohnston@gmail.com}}
+        \item \icon{Github}{6}{\href{https://github.com/rynecjohnston}{rynecjohnston}}
+        \item \icon{MapMarker}{6} {Beaverton, OR 97008}
     \end{itemize}
 \end{mybox}
 
 \vspace*{-8pt}
 \section*{\color{oceanblue}\smallcapsalt{Education}}
-\hline
+\vspace{-\baselineskip}
+\noindent\rule{\columnwidth}{1pt}
 \begin{tabular} { r l }
     \\[-6pt]2015 & \textbf{Doctor of Philosophy}, Chemistry\\
     & \textit{Oregon State University} \\
@@ -136,17 +139,19 @@
 
 \vspace*{-8pt}
 \section*{\color{oceanblue}\smallcapsalt{Expertise}}
-\hline
+\vspace{-\baselineskip}
+\noindent\rule{\columnwidth}{1pt}
 \vspace*{8pt}
 p\textit{K}\textsubscript{a}, tautomerism, chemical equilibria, homogenous catalysis, cheminformatics
 
 \vspace*{-8pt}
 \section*{\color{oceanblue}\smallcapsalt{Skills}}
-\hline
+\vspace{-\baselineskip}
+\noindent\rule{\columnwidth}{1pt}
 \vspace*{-6pt}
 \begin{tabularx}{\columnwidth}{>{\hsize=.80\hsize\linewidth=\hsize}X
     >{\hsize=1.20\hsize\linewidth=\hsize}X}
-    \begin{itemize}[itemsep=-2pt]
+    \begin{itemize}[itemsep=-2pt, topsep=1pt]
         \item Python
         \item PyData
         \item PyTorch
@@ -155,12 +160,12 @@ p\textit{K}\textsubscript{a}, tautomerism, chemical equilibria, homogenous catal
         \item C++
         \item Fortran
     \end{itemize} &
-    \begin{itemize}[itemsep=-2pt]
+    \begin{itemize}[itemsep=-2pt, topsep=1pt]
         \item agile methodology
         \item productivity tools
         \item performance profilers
         \item computational\newline chemistry packages
-        \begin{itemize}[itemsep=-2pt]
+        \begin{itemize}[itemsep=-2pt, topsep=0.25pt]
             \item Schr\"odinger
             \item ORCA
         \end{itemize}
@@ -169,15 +174,17 @@ p\textit{K}\textsubscript{a}, tautomerism, chemical equilibria, homogenous catal
 
 \vspace*{-8pt}
 \section*{\color{oceanblue}\smallcapsalt{Scientific Communication}}
-\hline
+\vspace{-\baselineskip}
+\noindent\rule{\columnwidth}{1pt}
 \begin{tabularx} {\columnwidth}{@{} D{0.53} A{1.47} @{}}
-    \\[-6pt]\multirow{}{}{\textit{Recent Conferences}} & Oral presentation at the American Chemical Society National Meeting, Spring 2021\\
-    \\\multirow{}{}{\textit{\href{https://scholar.google.com/citations?user=wAcCco0AAAAJ}{Selected Publications (from \textgreater25)}}} & Johnston, R. C. et al. Epik: p\textit{K}\textsubscript{a} and Protonation State Prediction through Machine Learning \textit{Journal of Chemical Theory and Computation}, \textbf{2023}, \textit{19}, 2380-2388, doi: {\href{https://dx.doi.org/10.1021/acs.jctc.3c00044}{10.1021/acs.jctc.3c00044}}.
+    \multirow{3}{*}{\shortstack[l]{\textit{Recent}\\\textit{Conferences}}} & Oral presentation at the American Chemical Society National Meeting, Spring 2021\\
+    \multirow{6}{*}{\href{https://scholar.google.com/citations?user=wAcCco0AAAAJ}{\shortstack[l]{\textit{Selected}\\\textit{Publication}\\(from \textgreater25)}}} & Johnston, R. C. et al. Epik: p\textit{K}\textsubscript{a} and Protonation State Prediction through Machine Learning \textit{Journal of Chemical Theory and Computation}, \textbf{2023}, \textit{19}, 2380-2388, doi: {\href{https://dx.doi.org/10.1021/acs.jctc.3c00044}{10.1021/acs.jctc.3c00044}}.\\
 \end{tabularx}
 
 \vspace*{-12pt}
 \section*{\color{oceanblue}\smallcapsalt{Interests}}
-\hline
+\vspace{-\baselineskip}
+\noindent\rule{\columnwidth}{1pt}
 \vspace*{12pt}
 chemistry, geology, history, programming, hiking
 
