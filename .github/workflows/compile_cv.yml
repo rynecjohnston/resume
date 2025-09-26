@@ -1,4 +1,4 @@
-name: Compile LaTeX and Create Release
+name: Compile LaTeX CV and Create Release
 
 on:
   push:
