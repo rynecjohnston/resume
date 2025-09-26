@@ -1,0 +1,187 @@
+%\documentclass{article}
+
+\documentclass[12pt,letter,academicons]{article}
+\usepackage[margin=1.75cm]{geometry}
+\setlength{\columnsep}{1cm}
+
+\usepackage{fontawesome}
+\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{tcolorbox}
+\usepackage{varwidth}
+\usepackage{xcolor}
+\usepackage{academicons}
+\usepackage{enumitem}
+
+
+\definecolor{slateblue}{RGB}{61,75,105}
+\definecolor{skyblue}{RGB}{210,225,241}
+\definecolor{oceanblue}{RGB}{23,55,96}
+
+\hypersetup{colorlinks=true, urlcolor=black}
+
+
+\newcommand{\icon}[3]{% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text
+	\vcenteredhbox{\colorbox{skyblue}{\makebox(#2, #2){\textcolor{oceanblue}{\normalsize\csname fa#1\endcsname}}}}% Icon and box
+	\hspace{0.35cm}% Whitespace
+	\vcenteredhbox{\textcolor{black}{#3}}% Text
+}
+
+\newcommand*{\smallcaps}[1]{\textsc{#1}}
+\newcommand*{\smallcapsalt}[1]{{\mdseries\smallcaps{#1}}}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{A}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
+\newcolumntype{D}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}
+
+\newsavebox{\myboxbox}
+\NewDocumentEnvironment{mybox}{+b}% find a better name
+ {%
+  \centering
+  \setlength{\parindent}{0pt}%
+  % measure the text width
+  \sbox{\myboxbox}{\begin{varwidth}{\columnwidth}#1\end{varwidth}}%
+  \begin{tcolorbox}[
+    breakable,
+    width=\columnwidth,
+    %top=0.2mm,
+    %bottom=0.1mm,
+    %left=0.1mm,
+    %right=0.1mm,
+    colback=skyblue,
+    colframe=skyblue,
+    sharp corners,
+    %fontupper=\color{white},
+    size=title
+    ]
+  #1
+  \end{tcolorbox}%
+ }{}
+
+
+
+\begin{document}
+\pagestyle{empty}
+\begin{multicols}{2}
+\begin{small}
+\begin{center}
+    \vspace*{2pt}\color{oceanblue}\Huge{\textbf{Ryne C. Johnston}}
+\end{center}
+\vspace*{-6pt}
+\section*{\color{oceanblue}\smallcapsalt{Professional Experience}}
+\hline
+
+\begin{tabularx} {\columnwidth}{@{} L R @{}}
+    \\[-6pt]Schr\"odinger, Inc. & Portland, OR\\
+    \textbf{\textit{Product Manager}} & Jun 2023 -- Present
+\end{tabularx}
+\begin{itemize}
+    \item Managed multiple products and directed teams to meet project goals and deadlines.
+    \begin{itemize}
+        \item \textit{Epik}: p\textit{K}\textsubscript{a} and protonation state predictor
+        \item \textit{E-sol}: CNS permeability predictor
+    \end{itemize}
+    \item Interacted with customers and provided software solutions to meet their needs.
+    \item Interacted with marketing and sales teams to develop and execute product launch plans.
+\end{itemize}
+\begin{tabularx} {\columnwidth}{@{} L R @{}}
+    \\[-6pt]\textbf{\textit{Principal Scientist/}} & Jun 2021 -- Jun 2023\\
+    \textbf{\textit{Technical Lead}}
+\end{tabularx}
+\begin{itemize}
+    \item Developed and maintained best-in-class Python software to predict chemical properties through machine learning.
+    \item Wrote scholarly articles and technical documents for public consumption.
+    \item Wrote and maintained documentation and automated tests.
+    \item Performed code reviews.
+\end{itemize}
+\begin{tabularx} {\columnwidth}{@{} L R @{}}
+    \\[-6pt]\textbf{\textit{Senior Scientist}} & May 2017 -- Jun 2021\\
+\end{tabularx}
+\begin{itemize}
+    \item Developed software to enumerate and canonicalize different related chemical compounds.
+    \item Maintained legacy chemistry C/C++ software.
+\end{itemize}
+\begin{tabularx} {\columnwidth}{@{} L R @{}}
+    \\[-6pt]Oak Ridge Nat'l Lab & Oak Ridge, TN\\
+    \textbf{\textit{Postdoctoral Scholar}} & Jun 2015 -- Feb 2017\\
+\end{tabularx}
+\begin{itemize}
+    \item Effectively communicated progress to a large, cross-disciplinary group of researchers.
+    \item Wrote scholarly articles and research project proposals.
+    \item Awarded nearly \$1M in research grant funds.
+\end{itemize}
+
+\columnbreak
+
+\begin{mybox}
+    \begin{itemize}
+        \icon{Phone}{6} +1 (870) 403-2201\\
+        \icon{Envelope}{6} {\href{mailto://rynecjohnston@gmail.com}{rynecjohnston@gmail.com}}\\
+        \icon{Github}{6} {\href{https://github.com/rynecjohnston}{rynecjohnston}}\\
+        \icon{MapMarker}{6} Beaverton, OR 97008
+    \end{itemize}
+\end{mybox}
+
+\vspace*{-8pt}
+\section*{\color{oceanblue}\smallcapsalt{Education}}
+\hline
+\begin{tabular} { r l }
+    \\[-6pt]2015 & \textbf{Doctor of Philosophy}, Chemistry\\
+    & \textit{Oregon State University} \\
+    \\[-6pt]2010 & \textbf{Bachelor of Science}, Chemistry\\
+    & \textit{Henderson State University}
+\end{tabular}
+
+\vspace*{-8pt}
+\section*{\color{oceanblue}\smallcapsalt{Expertise}}
+\hline
+\vspace*{8pt}
+p\textit{K}\textsubscript{a}, tautomerism, chemical equilibria, homogenous catalysis, cheminformatics
+
+\vspace*{-8pt}
+\section*{\color{oceanblue}\smallcapsalt{Skills}}
+\hline
+\vspace*{-6pt}
+\begin{tabularx}{\columnwidth}{>{\hsize=.80\hsize\linewidth=\hsize}X
+    >{\hsize=1.20\hsize\linewidth=\hsize}X}
+    \begin{itemize}[itemsep=-2pt]
+        \item Python
+        \item PyData
+        \item PyTorch
+        \item RDKit
+        \item git/GitHub
+        \item C++
+        \item Fortran
+    \end{itemize} &
+    \begin{itemize}[itemsep=-2pt]
+        \item agile methodology
+        \item productivity tools
+        \item performance profilers
+        \item computational\newline chemistry packages
+        \begin{itemize}[itemsep=-2pt]
+            \item Schr\"odinger
+            \item ORCA
+        \end{itemize}
+    \end{itemize}
+\end{tabularx}
+
+\vspace*{-8pt}
+\section*{\color{oceanblue}\smallcapsalt{Scientific Communication}}
+\hline
+\begin{tabularx} {\columnwidth}{@{} D{0.53} A{1.47} @{}}
+    \\[-6pt]\multirow{}{}{\textit{Recent Conferences}} & Oral presentation at the American Chemical Society National Meeting, Spring 2021\\
+    \\\multirow{}{}{\textit{\href{https://scholar.google.com/citations?user=wAcCco0AAAAJ}{Selected Publications (from \textgreater25)}}} & Johnston, R. C. et al. Epik: p\textit{K}\textsubscript{a} and Protonation State Prediction through Machine Learning \textit{Journal of Chemical Theory and Computation}, \textbf{2023}, \textit{19}, 2380-2388, doi: {\href{https://dx.doi.org/10.1021/acs.jctc.3c00044}{10.1021/acs.jctc.3c00044}}.
+\end{tabularx}
+
+\vspace*{-12pt}
+\section*{\color{oceanblue}\smallcapsalt{Interests}}
+\hline
+\vspace*{12pt}
+chemistry, geology, history, programming, hiking
+
+\end{small}
+\end{multicols}
+\end{document}
